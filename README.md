@@ -68,8 +68,8 @@ This app allows users to search for houses to buy or places to rent within their
 Tab Navigation (Tab to Screen)
 
 - Home screen
-- Saved Houses screen
-- User settings screen
+- Saved Houses 
+- User settings
 
 ## Wireframes
 ![alt text](https://github.com/AND-Group-Project/SettleInn-app/blob/main/IMG_0152.jpg "Optional title")

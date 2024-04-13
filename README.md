@@ -72,11 +72,12 @@ Tab Navigation (Tab to Screen)
 - User settings
 
 ## Wireframes
+![image](https://github.com/AND-Group-Project/SettleInn-app/assets/98335699/e02ea435-35db-4ef5-9e85-9649bd71acb7)
+![image](https://github.com/AND-Group-Project/SettleInn-app/assets/98335699/f466f530-3675-408c-af12-45a31386fdc7)
 ![alt text](https://github.com/AND-Group-Project/SettleInn-app/blob/main/IMG_0154.jpg "Optional title")
 ![alt text](https://github.com/AND-Group-Project/SettleInn-app/blob/main/IMG_0152.jpg "Optional title")
 ![alt text](https://github.com/AND-Group-Project/SettleInn-app/blob/main/IMG_0153.jpg "Optional title")
-![image](https://github.com/AND-Group-Project/SettleInn-app/assets/98335699/e02ea435-35db-4ef5-9e85-9649bd71acb7)
-![image](https://github.com/AND-Group-Project/SettleInn-app/assets/98335699/f466f530-3675-408c-af12-45a31386fdc7)
+
 
 
 

@@ -72,3 +72,6 @@ Tab Navigation (Tab to Screen)
 - User settings screen
 
 ## Wireframes
+![alt text](https://github.com/AND-Group-Project/SettleInn-app/blob/main/IMG_0152.jpg "Optional title")
+![alt text](https://github.com/AND-Group-Project/SettleInn-app/blob/main/IMG_0153.jpg "Optional title")
+

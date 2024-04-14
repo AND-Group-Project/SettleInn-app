@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setupBottomNavigationView()
 
         if (savedInstanceState == null) {
-            replaceFragment(homeScreenFragment())
+            replaceFragment(HomeScreenFragment())
             findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.home
         }
     }
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigation.setOnItemSelectedListener { item ->
             val selectedFragment: Fragment? = when (item.itemId) {
-                R.id.home -> homeScreenFragment()
+                R.id.home -> HomeScreenFragment()
                 R.id.saved_homes -> SavedHousesFragment()
                 R.id.settings -> settingsFragment()
                 else -> null

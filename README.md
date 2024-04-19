@@ -87,8 +87,12 @@ Tab Navigation (Tab to Screen)
 ## Issue cards
 ![](https://github.com/AND-Group-Project/SettleInn-app/blob/main/Screenshot.gif)
 ![](https://github.com/AND-Group-Project/SettleInn-app/blob/main/nextSprintTask.png)
-Issues worked on this sprint
-List the issues you completed this sprint
+# Issues worked on sprint 1
+- [X] User navigation is complete
+- [X] Home screen for our app is built
+- [X] Search Option completed. Users can now search for a particular location, and all the houses that are for sale in that location will be displayed
+- [X] User is able to save the selected houses in the database 
+
 [Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
 
 

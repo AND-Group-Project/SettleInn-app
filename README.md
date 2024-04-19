@@ -82,7 +82,7 @@ Tab Navigation (Tab to Screen)
 
 # Milestone 2 - Build Sprint 1 (Unit 8)
 ## GitHub Project board
-[Add screenshot of your Project Board with three milestones visible in this section] 
+[https://github.com/AND-Group-Project/SettleInn-app/blob/main/Kapture%202024-04-19%20at%2009.16.16.gif] 
 
 ## Issue cards
 [Add screenshot of your Project Board with the issues that you've been working on for this unit's milestone] 

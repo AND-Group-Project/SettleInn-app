@@ -32,7 +32,7 @@ class HomeScreenFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        adapter = HouseListAdapter(mutableListOf())  // Initialize your adapter
+        adapter = HouseListAdapter(requireContext(), mutableListOf())
         recyclerView.adapter = adapter
 
         return view

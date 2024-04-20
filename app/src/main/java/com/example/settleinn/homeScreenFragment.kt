@@ -21,6 +21,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import androidx.navigation.fragment.findNavController
 
 class HomeScreenFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -31,8 +32,7 @@ class HomeScreenFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home_screen, container, false)
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
-
-        adapter = HouseListAdapter(mutableListOf())  // Initialize your adapter
+        adapter = HouseListAdapter(mutableListOf())
         recyclerView.adapter = adapter
 
         return view

@@ -5,9 +5,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.view.menu.MenuView.ItemView
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.w3c.dom.Text
+import com.example.settleinn.HomeScreenFragmentDirections
 
 
 class HouseListAdapter(private var houselist: MutableList<HouseDetail>) : RecyclerView.Adapter<HouseListAdapter.ViewHolder>() {
@@ -38,6 +42,7 @@ class HouseListAdapter(private var houselist: MutableList<HouseDetail>) : Recycl
             .load(house.imgSrc)
             .into(holder.houseImageView)
     }
+
 
     override fun getItemCount(): Int = houselist.size
 

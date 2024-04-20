@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/houseListFragment">
+
+    <fragment
+        android:id="@+id/houseListFragment"
+        android:name="com.example.settleinn.HomeScreenFragment"
+        android:label="fragment_house_list"
+        tools:layout="@layout/fragment_home_screen" >
+        <action
+            android:id="@+id/action_houseListFragment_to_houseDetailFragment"
+            app:destination="@id/houseDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/houseDetailFragment"
+        android:name="com.example.settleinn.HouseDetailsFragment"
+        android:label="fragment_house_detail"
+        tools:layout="@layout/fragment_house_details" />
+</navigation>

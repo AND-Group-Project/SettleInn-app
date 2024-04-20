@@ -93,8 +93,7 @@ Tab Navigation (Tab to Screen)
 - [X] Search Option completed. Users can now search for a particular location, and all the houses that are for sale in that location will be displayed
 - [X] User is able to save the selected houses in the database 
 
-[Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
-
+![](https://github.com/AND-Group-Project/SettleInn-app/blob/main/Kapture%202024-04-19%20at%2021.35.47%20(1)%20(1).gif)
 
 
 

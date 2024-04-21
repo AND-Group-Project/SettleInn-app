@@ -1,6 +1,4 @@
 package com.example.settleinn
-
-import ApiResponse
 import ZillowApiService
 import android.os.Bundle
 import android.util.Log

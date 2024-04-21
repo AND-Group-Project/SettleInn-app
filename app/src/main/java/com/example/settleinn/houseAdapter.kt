@@ -42,7 +42,6 @@ class HouseListAdapter(private val context: Context, private var houselist: Muta
 
         override fun onClick(v: View?) {
             val house = houselist[adapterPosition]
-
             val intent = Intent(context, HouseDetailsFragment::class.java)
             intent.putExtra(HOUSE_EXTRA, house)
             context.startActivity(intent)
@@ -59,19 +58,6 @@ class HouseListAdapter(private val context: Context, private var houselist: Muta
         val house = houselist[position]
         holder.bind(house)
     }
-
-//    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        val house = houselist[position]
-//        holder.bedroomsView.text = "${house.bedrooms} BR | ${house.bathrooms} BA"
-//        holder.areaView.text = "${house.livingArea} sq.ft"
-//        holder.priceView.text = "$${house.price}"
-//        holder.locationView.text = house.address
-//        holder.statusView.text = house.listingStatus
-//
-//        Glide.with(holder.houseImageView.context)
-//            .load(house.imgSrc)
-//            .into(holder.houseImageView)
-//    }
 
     override fun getItemCount(): Int = houselist.size
 

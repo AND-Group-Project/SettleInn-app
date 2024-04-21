@@ -1,5 +1,6 @@
 package com.example.settleinn
 import ZillowApiService
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,8 +18,11 @@ import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.NumberFormat
+import java.util.Locale
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 class HomeScreenFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -35,6 +39,7 @@ class HomeScreenFragment : Fragment() {
 
         return view
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -1,5 +1,5 @@
 package com.example.settleinn
-import android.media.Image
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,15 +7,25 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import java.text.NumberFormat
+import java.util.Locale
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.google.android.gms.maps.CameraUpdateFactory
 import okhttp3.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
-import com.example.settleinn.SchoolInfo
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import android.Manifest
 
-class HouseDetailsFragment : AppCompatActivity() {
+
+class HouseDetailsActivity : AppCompatActivity(),  OnMapReadyCallback  {
     private lateinit var detailHouseImage: ImageView
     private lateinit var locationTextView: TextView
     private lateinit var priceTextView: TextView
@@ -26,6 +36,11 @@ class HouseDetailsFragment : AppCompatActivity() {
     private lateinit var houseDescription: TextView
     private lateinit var schoolsContainer: LinearLayout
     private lateinit var housesContainer: LinearLayout
+    private lateinit var googleMap: GoogleMap
+    private var latitude: Double = 47.6205
+    private var longitude: Double = -122.3493
+    private var title: String = "Seattle"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_house_detail)
@@ -40,6 +55,7 @@ class HouseDetailsFragment : AppCompatActivity() {
         schoolsContainer = findViewById(R.id.schoolsContainer)
         housesContainer = findViewById(R.id.housesContainer)
 
+
         backbutton.setOnClickListener {
             finish()
             overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right)
@@ -47,7 +63,8 @@ class HouseDetailsFragment : AppCompatActivity() {
 
         val house = intent.getSerializableExtra("HOUSE_EXTRA") as HouseDetail
         locationTextView.text = house.address
-        priceTextView.text = house.price.toString()
+        title = house.address
+        priceTextView.text = "$" + formatPriceWithCommas(house.price)
         areaTextView.text = house.livingArea.toString() + "sq.ft "
         bedroomBathTextView.text = house.bedrooms.toString() + "bd | " + house.bathrooms.toString() + "ba "
         if (house.listingStatus == "FOR_SALE") {
@@ -55,6 +72,8 @@ class HouseDetailsFragment : AppCompatActivity() {
         } else {
             statusTextView.text = "Not For Sale"
         }
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
 
 
         Glide.with(this)
@@ -63,6 +82,11 @@ class HouseDetailsFragment : AppCompatActivity() {
 
         getData(house.zpid)
 
+    }
+
+    fun formatPriceWithCommas(price: Int): String {
+        val formatter = NumberFormat.getNumberInstance(Locale.US)
+        return formatter.format(price)
     }
 
     fun parseSchools(jsonInput: String): List<SchoolInfo> {
@@ -144,11 +168,11 @@ class HouseDetailsFragment : AppCompatActivity() {
 
     private fun getData(id: Int) {
         val client = OkHttpClient()
-
+        val apiKey = getString(R.string.api_key_zillow)
         val request = Request.Builder()
             .url("https://zillow-com1.p.rapidapi.com/property?zpid=$id")
             .get()
-            .addHeader("X-RapidAPI-Key", "Your API key here")
+            .addHeader("X-RapidAPI-Key", apiKey)
             .addHeader("X-RapidAPI-Host", "zillow-com1.p.rapidapi.com")
             .build()
 
@@ -174,14 +198,16 @@ class HouseDetailsFragment : AppCompatActivity() {
                             try {
                                 val jsonObject = JSONObject(responseData)
                                 val description = jsonObject.optString("description", "No description available.")
-                                val price = jsonObject.optInt("price", 0)
+                                latitude  = jsonObject.optDouble("latitude", Double.NaN)
+                                longitude = jsonObject.optDouble("longitude", Double.NaN)
+                                runOnUiThread {
+                                    updateMap()
+                                }
                                 val school_List = parseSchools(jsonObject.toString())
                                 //val nearby_houseList = parseHouses(jsonObject.toString())
 
                                 runOnUiThread {
                                     houseDescription.text = description
-                                    priceTextView.text =
-                                        if (price != 0) "$$price" else "Price not available"
                                     addSchoolsDynamically(school_List)
                                     //addHousesDynamically(nearby_houseList)
                                 }
@@ -197,4 +223,25 @@ class HouseDetailsFragment : AppCompatActivity() {
             }
         })
     }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        this.googleMap = googleMap
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            == PackageManager.PERMISSION_GRANTED) {
+            googleMap.isMyLocationEnabled = true
+        }
+
+        updateMap()
+    }
+
+    private fun updateMap() {
+        val location = LatLng(latitude, longitude)
+        googleMap.clear()
+        googleMap.addMarker(
+            MarkerOptions().position(location).title(title).snippet("Updated Place")
+        )
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15f))
+    }
+
 }
+

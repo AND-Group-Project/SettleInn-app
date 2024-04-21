@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="api_key_zillow"> Your Zillow API key</string>
+    <string name="google_maps_api_key">Your Google Map Api key</string>
+</resources>

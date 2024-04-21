@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import org.w3c.dom.Text
+import java.text.NumberFormat
+import java.util.Locale
 
 const val HOUSE_EXTRA = "HOUSE_EXTRA"
 private const val TAG = "HouseAdapter"
@@ -31,7 +31,7 @@ class HouseListAdapter(private val context: Context, private var houselist: Muta
         fun bind(house: HouseDetail) {
             bedroomsView.text = "${house.bedrooms} BR | ${house.bathrooms} BA"
             areaView.text = "${house.livingArea} sq.ft"
-            priceView.text = "$${house.price}"
+            priceView.text = "$" + formatPriceWithCommas(house.price)
             locationView.text = house.address
             statusView.text = house.listingStatus
 
@@ -42,7 +42,7 @@ class HouseListAdapter(private val context: Context, private var houselist: Muta
 
         override fun onClick(v: View?) {
             val house = houselist[adapterPosition]
-            val intent = Intent(context, HouseDetailsFragment::class.java)
+            val intent = Intent(context, HouseDetailsActivity::class.java)
             intent.putExtra(HOUSE_EXTRA, house)
             context.startActivity(intent)
         }
@@ -52,6 +52,10 @@ class HouseListAdapter(private val context: Context, private var houselist: Muta
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.recyclerview_items, parent, false)
         return ViewHolder(view)
+    }
+    fun formatPriceWithCommas(price: Int): String {
+        val formatter = NumberFormat.getNumberInstance(Locale.US)
+        return formatter.format(price)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

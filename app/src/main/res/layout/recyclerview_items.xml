@@ -26,6 +26,16 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/saveIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_saved_search_24"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
                 android:id="@+id/houseImage"
                 android:layout_width="385dp"
                 android:layout_height="244dp"

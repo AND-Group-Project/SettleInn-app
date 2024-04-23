@@ -72,11 +72,29 @@ Tab Navigation (Tab to Screen)
 - User settings
 
 ## Wireframes
+![image](https://github.com/AND-Group-Project/SettleInn-app/assets/98335699/e02ea435-35db-4ef5-9e85-9649bd71acb7)
+![image](https://github.com/AND-Group-Project/SettleInn-app/assets/98335699/f466f530-3675-408c-af12-45a31386fdc7)
 ![alt text](https://github.com/AND-Group-Project/SettleInn-app/blob/main/IMG_0154.jpg "Optional title")
 ![alt text](https://github.com/AND-Group-Project/SettleInn-app/blob/main/IMG_0152.jpg "Optional title")
 ![alt text](https://github.com/AND-Group-Project/SettleInn-app/blob/main/IMG_0153.jpg "Optional title")
-![image](https://github.com/AND-Group-Project/SettleInn-app/assets/98335699/e02ea435-35db-4ef5-9e85-9649bd71acb7)
-![image](https://github.com/AND-Group-Project/SettleInn-app/assets/98335699/f466f530-3675-408c-af12-45a31386fdc7)
+
+
+
+# Milestone 2 - Build Sprint 1 (Unit 8)
+## GitHub Project board
+![](https://github.com/AND-Group-Project/SettleInn-app/blob/main/Kapture%202024-04-19%20at%2009.16.16.gif)
+
+## Issue cards
+![](https://github.com/AND-Group-Project/SettleInn-app/blob/main/Screenshot.gif)
+![](https://github.com/AND-Group-Project/SettleInn-app/blob/main/nextSprintTask.png)
+# Issues worked on sprint 1
+- [X] User navigation is complete
+- [X] Home screen for our app is built
+- [X] Search Option completed. Users can now search for a particular location, and all the houses that are for sale in that location will be displayed
+- [X] User is able to save the selected houses in the database 
+
+![](https://github.com/AND-Group-Project/SettleInn-app/blob/main/Kapture%202024-04-19%20at%2021.35.47%20(1)%20(1).gif)
+
 
 
 

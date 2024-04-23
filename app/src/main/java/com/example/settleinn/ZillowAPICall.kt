@@ -1,3 +1,4 @@
+import com.example.settleinn.House
 import com.example.settleinn.HouseDetail
 import retrofit2.Call
 import retrofit2.http.GET
@@ -16,4 +17,4 @@ interface ZillowApiService {
     ): Call<ApiResponse>
 }
 
-data class ApiResponse(val props: List<HouseDetail>)
+data class ApiResponse(val props: List<House>)

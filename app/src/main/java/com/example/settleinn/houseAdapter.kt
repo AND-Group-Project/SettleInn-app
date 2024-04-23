@@ -2,6 +2,7 @@ package com.example.settleinn
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.view.menu.MenuView.ItemView
@@ -14,7 +15,7 @@ import org.w3c.dom.Text
 import com.example.settleinn.HomeScreenFragmentDirections
 
 
-class HouseListAdapter(private var houselist: MutableList<HouseDetail>) : RecyclerView.Adapter<HouseListAdapter.ViewHolder>() {
+class HouseListAdapter(private var houselist: MutableList<House>, private val onSaveButtonClick: (House) -> Unit) : RecyclerView.Adapter<HouseListAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val houseImageView: ImageView = itemView.findViewById(R.id.houseImage)
         val locationView: TextView = itemView.findViewById(R.id.location)
@@ -22,6 +23,7 @@ class HouseListAdapter(private var houselist: MutableList<HouseDetail>) : Recycl
         val areaView: TextView = itemView.findViewById(R.id.house_area)
         val bedroomsView: TextView = itemView.findViewById(R.id.bedrooms)
         val statusView: TextView = itemView.findViewById(R.id.status)
+        val saveButton: Button = itemView.findViewById(R.id.saveButton)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -41,12 +43,16 @@ class HouseListAdapter(private var houselist: MutableList<HouseDetail>) : Recycl
         Glide.with(holder.houseImageView.context)
             .load(house.imgSrc)
             .into(holder.houseImageView)
+
+        holder.saveButton.setOnClickListener {
+            onSaveButtonClick(house)
+        }
     }
 
 
     override fun getItemCount(): Int = houselist.size
 
-    fun updateData(newData: List<HouseDetail>) {
+    fun updateData(newData: List<House>) {
         houselist.clear()
         houselist.addAll(newData)
         notifyDataSetChanged()

@@ -27,12 +27,22 @@ class HomeScreenFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var apiService: ZillowApiService
     private lateinit var adapter: HouseListAdapter
+    private lateinit var savedHouseViewModel: SavedHouseViewModel
+    private lateinit var houseDao: HouseDao
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home_screen, container, false)
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = HouseListAdapter(mutableListOf())
+        val database = AppDatabase.getDatabase(view.context)
+        houseDao = database.houseDao()
+        savedHouseViewModel = SavedHouseViewModel(houseDao)
+        adapter = HouseListAdapter(mutableListOf()) { house ->
+            // Implement saving logic here
+            // For example, you can insert the house into your database
+            // You can access your DAO through your ViewModel
+            savedHouseViewModel.insertHouse(house)
+        }
         recyclerView.adapter = adapter
 
         return view

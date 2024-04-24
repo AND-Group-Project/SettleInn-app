@@ -57,7 +57,11 @@ class HomeScreenFragment : Fragment() {
         val submitfilter: Button = view.findViewById(R.id.submitFilters)
 
         applyFilter.setOnClickListener {
-            filtersForm.visibility = View.VISIBLE
+            if (filtersForm.visibility == View.VISIBLE) {
+                filtersForm.visibility = View.GONE
+            } else {
+                filtersForm.visibility = View.VISIBLE
+            }
         }
 
         submitfilter.setOnClickListener {
@@ -68,16 +72,16 @@ class HomeScreenFragment : Fragment() {
             val bathrooms = view.findViewById<Spinner>(R.id.bathroomSpinner).selectedItem.toString()
             val hasPool = view.findViewById<Spinner>(R.id.poolSpinner).selectedItem.toString()
             val propertyType = when (view.findViewById<RadioGroup>(R.id.rentBuySelector).checkedRadioButtonId) {
-                R.id.radioRent -> "Rent"
-                R.id.radioBuy -> "Buy"
-                else -> "Rent"
+                R.id.radioRent -> "ForRent"
+                R.id.radioBuy -> "ForSale"
+                else -> "ForSale"
             }
             val parkingSpots = view.findViewById<Spinner>(R.id.parkingSpotsSpinner).selectedItem.toString()
             val hasGarage = view.findViewById<Spinner>(R.id.garageSpinner).selectedItem.toString()
             val isNewConstruction = view.findViewById<Spinner>(R.id.constructionSpinner).selectedItem.toString()
 
             filtersForm.visibility = View.GONE
-            fetchData(searchField, "homes", bedrooms, bathrooms)
+            fetchData(searchField, "homes", bedrooms, bathrooms,"ForRent", hasPool)
         }
     }
 
@@ -90,7 +94,7 @@ class HomeScreenFragment : Fragment() {
         apiService = retrofit.create(ZillowApiService::class.java)
     }
 
-    fun fetchData(location: String?, homeType: String?, bedrooms: String?, bathrooms:String?) {
+    fun fetchData(location: String?, homeType: String?, bedrooms: String?, bathrooms:String?, propertyType: String, haspool: String?) {
         val queryMap = mutableMapOf<String, String>()
 
         // Add location to the query map if not null
@@ -99,11 +103,22 @@ class HomeScreenFragment : Fragment() {
         // Add home type to the query map if not null
         homeType?.let { queryMap["home_type"] = it }
 
+        // propertyType?.let{ queryMap["status_type"] = it}
+
         if (bedrooms != null && bedrooms.uppercase() != "N/A") {
             queryMap["bedsMax"] = bedrooms
         }
         if (bathrooms != null && bathrooms.uppercase() != "N/A") {
             queryMap["bathsMax"] = bathrooms
+        }
+
+        if (haspool != null && haspool.uppercase() != "N/A") {
+            if (haspool == "yes") {
+                queryMap["hasPool"] = "true"
+            } else {
+                queryMap["hasPool"] = "false"
+            }
+
         }
         val call = apiService.searchProperties(queryMap)
 

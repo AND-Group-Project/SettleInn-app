@@ -7,7 +7,7 @@ import retrofit2.http.QueryMap
 
 interface ZillowApiService {
     @Headers(
-        "X-RapidAPI-Key:  Zillow Key",
+        "X-RapidAPI-Key: Your Api key",
         "X-RapidAPI-Host: zillow-com1.p.rapidapi.com"
     )
     @GET("propertyExtendedSearch")

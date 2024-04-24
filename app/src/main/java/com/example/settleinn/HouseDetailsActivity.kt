@@ -69,7 +69,9 @@ class HouseDetailsActivity : AppCompatActivity(),  OnMapReadyCallback  {
         bedroomBathTextView.text = house.bedrooms.toString() + "bd | " + house.bathrooms.toString() + "ba"
         if (house.listingStatus == "FOR_SALE") {
             statusTextView.text = "For Sale"
-        } else {
+        } else if (house.listingStatus == "ForRent") {
+            statusTextView.text = "For Rent"
+        }else {
             statusTextView.text = "Not For Sale"
         }
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment

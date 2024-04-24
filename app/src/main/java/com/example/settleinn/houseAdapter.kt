@@ -61,6 +61,8 @@ class HouseListAdapter(
         holder.locationView.text = house.address
         if (house.listingStatus == "FOR_SALE") {
             holder.statusView.text = "Active"
+        } else if (house.listingStatus == "ForRent") {
+            holder.statusView.text = "Active"
         } else {
             holder.statusView.text = "Inactive"
         }

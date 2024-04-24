@@ -15,7 +15,7 @@ data class House (
     @ColumnInfo(name = "zestimate") val zprice: Int?,
     @ColumnInfo(name = "imgSrc") val imgSrc: String?,
     @ColumnInfo(name = "bedrooms") val bedrooms: Int?,
-    @ColumnInfo(name = "bedrooms") val bathrooms: Int?,
+    @ColumnInfo(name = "bathrooms") val bathrooms: Int?,
     @ColumnInfo(name = "listingStatus") val listingStatus: String?,
     @ColumnInfo(name = "daysOnZillow") val daysOnZillow: String?,
 )

@@ -1,59 +1,61 @@
 package com.example.settleinn
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.settleinn.databinding.FragmentSavedHousesBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SavedHousesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SavedHousesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentSavedHousesBinding
+    private lateinit var viewModel: SavedHouseViewModel
+    private lateinit var adapter: HouseListAdapter
+    private lateinit var houseDao: HouseDao
+    private lateinit var savedHouseViewModel: SavedHouseViewModel
+    private lateinit var houses: List<HouseDetail>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_saved_houses, container, false)
+    ): View {
+        binding = FragmentSavedHousesBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SavedHousesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SavedHousesFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        val database = AppDatabase.getDatabase(view.context)
+        houseDao = database.houseDao()
+        savedHouseViewModel = SavedHouseViewModel(houseDao)
+
+        savedHouseViewModel.viewModelScope.launch(Dispatchers.IO) {
+            houses = savedHouseViewModel.getAllSavedHouses()
+            //Log.v("degub", entries[0].date)
+            adapter = HouseListAdapter(requireContext(), mutableListOf(), { house ->
+                // Implement saving logic here
+                // For example, you can insert the house into your database
+                // You can access your DAO through your ViewModel
+                savedHouseViewModel.deleteHouse(house)
+            }) { house ->
+                savedHouseViewModel.insertHouse(house as HouseDetail)
             }
+            withContext(Dispatchers.Main) {
+                // Update UI on the main thread
+                adapter.updateData(houses.toMutableList())
+                binding.recyclerView.adapter = adapter
+                // adapter = EntryAdapter(entries, this@MainActivity)
+            }
+        }
     }
 }

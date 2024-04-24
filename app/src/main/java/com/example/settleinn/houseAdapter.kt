@@ -1,9 +1,11 @@
 package com.example.settleinn
+
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -13,31 +15,28 @@ import java.util.Locale
 
 const val HOUSE_EXTRA = "HOUSE_EXTRA"
 private const val TAG = "HouseAdapter"
+class HouseListAdapter(
+    private val context: Context,
+    private var houselist: MutableList<HouseDetail>,
+    private val onSaveButtonClick: (HouseDetail) -> Unit,
+    param: (Any) -> Unit
+) : RecyclerView.Adapter<HouseListAdapter.ViewHolder>() {
 
-class HouseListAdapter(private val context: Context, private var houselist: MutableList<HouseDetail>) : RecyclerView.Adapter<HouseListAdapter.ViewHolder>() {
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        val houseImageView: ImageView = itemView.findViewById(R.id.houseImage)
+        val locationView: TextView = itemView.findViewById(R.id.location)
+        val priceView: TextView = itemView.findViewById(R.id.house_cost)
+        val areaView: TextView = itemView.findViewById(R.id.house_area)
+        val bedroomsView: TextView = itemView.findViewById(R.id.bedrooms)
+        val statusView: TextView = itemView.findViewById(R.id.status)
+        val saveButton: Button = itemView.findViewById(R.id.saveButton)
 
-        private val houseImageView: ImageView = itemView.findViewById(R.id.houseImage)
-        private val locationView: TextView = itemView.findViewById(R.id.location)
-        private val priceView: TextView = itemView.findViewById(R.id.house_cost)
-        private val areaView: TextView = itemView.findViewById(R.id.house_area)
-        private val bedroomsView: TextView = itemView.findViewById(R.id.bedrooms)
-        private val statusView: TextView = itemView.findViewById(R.id.status)
         init {
             itemView.setOnClickListener(this)
-        }
-
-        fun bind(house: HouseDetail) {
-            bedroomsView.text = "${house.bedrooms} BR | ${house.bathrooms} BA"
-            areaView.text = "${house.livingArea} sq.ft"
-            priceView.text = "$" + formatPriceWithCommas(house.price)
-            locationView.text = house.address
-            statusView.text = house.listingStatus
-
-            Glide.with(context)
-                .load(house.imgSrc)
-                .into(houseImageView)
+            saveButton.setOnClickListener {
+                val house = houselist[adapterPosition]
+                onSaveButtonClick(house)
+            }
         }
 
         override fun onClick(v: View?) {
@@ -53,14 +52,18 @@ class HouseListAdapter(private val context: Context, private var houselist: Muta
         val view = inflater.inflate(R.layout.recyclerview_items, parent, false)
         return ViewHolder(view)
     }
-    fun formatPriceWithCommas(price: Int): String {
-        val formatter = NumberFormat.getNumberInstance(Locale.US)
-        return formatter.format(price)
-    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val house = houselist[position]
-        holder.bind(house)
+        holder.bedroomsView.text = "${house.bedrooms} BR | ${house.bathrooms} BA"
+        holder.areaView.text = "${house.livingArea} sq.ft"
+        holder.priceView.text = "$" + house.price?.let { formatPriceWithCommas(it) }
+        holder.locationView.text = house.address
+        holder.statusView.text = house.listingStatus
+
+        Glide.with(context)
+            .load(house.imgSrc)
+            .into(holder.houseImageView)
     }
 
     override fun getItemCount(): Int = houselist.size
@@ -69,5 +72,10 @@ class HouseListAdapter(private val context: Context, private var houselist: Muta
         houselist.clear()
         houselist.addAll(newData)
         notifyDataSetChanged()
+    }
+
+    private fun formatPriceWithCommas(price: Int): String {
+        val formatter = NumberFormat.getNumberInstance(Locale.US)
+        return formatter.format(price)
     }
 }

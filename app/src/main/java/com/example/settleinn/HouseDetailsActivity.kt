@@ -63,8 +63,8 @@ class HouseDetailsActivity : AppCompatActivity(),  OnMapReadyCallback  {
 
         val house = intent.getSerializableExtra("HOUSE_EXTRA") as HouseDetail
         locationTextView.text = house.address
-        title = house.address
-        priceTextView.text = "$" + formatPriceWithCommas(house.price)
+        title = house.address.toString()
+        priceTextView.text = "$" + house.price?.let { formatPriceWithCommas(it) }
         areaTextView.text = house.livingArea.toString() + "sq.ft "
         bedroomBathTextView.text = house.bedrooms.toString() + "bd | " + house.bathrooms.toString() + "ba "
         if (house.listingStatus == "FOR_SALE") {

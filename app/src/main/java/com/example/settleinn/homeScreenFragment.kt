@@ -1,6 +1,5 @@
 package com.example.settleinn
 import ZillowApiService
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,23 +17,31 @@ import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.NumberFormat
-import java.util.Locale
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
 class HomeScreenFragment : Fragment() {
+    private lateinit var savedHouseViewModel: SavedHouseViewModel
+    private lateinit var houseDao: HouseDao
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var apiService: ZillowApiService
     private lateinit var adapter: HouseListAdapter
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home_screen, container, false)
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
-
-        adapter = HouseListAdapter(requireContext(), mutableListOf())
+        val database = AppDatabase.getDatabase(view.context)
+        houseDao = database.houseDao()
+        savedHouseViewModel = SavedHouseViewModel(houseDao)
+        adapter = HouseListAdapter(requireContext(), mutableListOf(), { house ->
+            savedHouseViewModel.insertHouse(house)
+        }) { house ->
+            savedHouseViewModel.insertHouse(house as HouseDetail)
+        }
         recyclerView.adapter = adapter
 
         return view

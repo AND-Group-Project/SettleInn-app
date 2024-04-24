@@ -65,8 +65,8 @@ class HouseDetailsActivity : AppCompatActivity(),  OnMapReadyCallback  {
         locationTextView.text = house.address
         title = house.address.toString()
         priceTextView.text = "$" + house.price?.let { formatPriceWithCommas(it) }
-        areaTextView.text = house.livingArea.toString() + "sq.ft "
-        bedroomBathTextView.text = house.bedrooms.toString() + "bd | " + house.bathrooms.toString() + "ba "
+        areaTextView.text = house.livingArea.toString() + " sqft"
+        bedroomBathTextView.text = house.bedrooms.toString() + "bd | " + house.bathrooms.toString() + "ba"
         if (house.listingStatus == "FOR_SALE") {
             statusTextView.text = "For Sale"
         } else {

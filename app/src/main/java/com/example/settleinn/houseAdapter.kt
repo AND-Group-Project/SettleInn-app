@@ -55,11 +55,16 @@ class HouseListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val house = houselist[position]
-        holder.bedroomsView.text = "${house.bedrooms} BR | ${house.bathrooms} BA"
-        holder.areaView.text = "${house.livingArea} sq.ft"
+        holder.bedroomsView.text = "${house.bedrooms} bds • ${house.bathrooms} ba •"
+        holder.areaView.text = " ${house.livingArea} sqft • "
         holder.priceView.text = "$" + house.price?.let { formatPriceWithCommas(it) }
         holder.locationView.text = house.address
-        holder.statusView.text = house.listingStatus
+        if (house.listingStatus == "FOR_SALE") {
+            holder.statusView.text = "Active"
+        } else {
+            holder.statusView.text = "Inactive"
+        }
+
 
         Glide.with(context)
             .load(house.imgSrc)

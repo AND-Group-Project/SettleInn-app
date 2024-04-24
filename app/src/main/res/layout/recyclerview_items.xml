@@ -26,16 +26,6 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/saveIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_saved_search_24"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
                 android:id="@+id/houseImage"
                 android:layout_width="385dp"
                 android:layout_height="244dp"
@@ -50,70 +40,66 @@
                 android:id="@+id/location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="6dp"
                 android:text="location"
                 android:textSize="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.438"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/houseImage" />
-
-            <TextView
-                android:id="@+id/house_cost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="house_cost"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.109"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/location" />
-
-            <TextView
-                android:id="@+id/house_area"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="house_area"
-                android:textSize="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.046"
-                app:layout_constraintStart_toEndOf="@+id/bedrooms" />
+                app:layout_constraintTop_toBottomOf="@+id/bedrooms" />
 
             <TextView
                 android:id="@+id/bedrooms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
                 android:text="bedrooms"
                 android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/house_cost" />
 
             <TextView
-                android:id="@+id/status"
+                android:id="@+id/house_cost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="44dp"
-                android:text="status"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="15px"
+                android:text="house_cost"
                 android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.801"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/houseImage" />
 
-            <Button
-                android:id="@+id/saveButton"
+            <TextView
+                android:id="@+id/house_area"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="4dp"
+                android:text="house_area"
+                android:textSize="15dp"
+                app:layout_constraintStart_toEndOf="@+id/bedrooms"
+                app:layout_constraintTop_toBottomOf="@+id/house_cost" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="status"
+                android:textSize="15dp"
+                app:layout_constraintStart_toEndOf="@+id/house_area"
+                app:layout_constraintTop_toBottomOf="@+id/house_cost" />
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="82dp"
+                android:layout_height="41dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
                 android:text="Save"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.801"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/status" />
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

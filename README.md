@@ -98,8 +98,7 @@ Tab Navigation (Tab to Screen)
 # Milestone 3 - Build Sprint 2 (Unit 9)
 
 ## GitHub Project board
-[Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.] 
-
+![](https://github.com/AND-Group-Project/SettleInn-app/blob/main/dashboard.png)
 ## Completed user stories
 - [X] Search option where can add their specification is complete
 - [X] User can save the listings to the database and retrieve it without making another API call
@@ -114,7 +113,7 @@ Pending user stories
 ![](https://github.com/AND-Group-Project/SettleInn-app/blob/main/Kapture%202024-04-26%20at%2013.10.17.gif)
 
 App Demo Video
-![](https://www.youtube.com/watch?v=tTWmbZjUmf4&ab_channel=SrimanUjhanthachhen)
+[![IMAGE ALT TEXT HERE](https://www.youtube.com/watch?v=tTWmbZjUmf4&ab_channel=SrimanUjhanthachhen)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
 
 
 

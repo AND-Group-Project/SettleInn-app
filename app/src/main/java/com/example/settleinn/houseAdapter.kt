@@ -60,9 +60,9 @@ class HouseListAdapter(
         holder.priceView.text = "$" + house.price?.let { formatPriceWithCommas(it) }
         holder.locationView.text = house.address
         if (house.listingStatus == "FOR_SALE") {
-            holder.statusView.text = "Active"
-        } else if (house.listingStatus == "ForRent") {
-            holder.statusView.text = "Active"
+            holder.statusView.text = "Sale"
+        } else if (house.listingStatus == "FOR_RENT") {
+            holder.statusView.text = "Rent"
         } else {
             holder.statusView.text = "Inactive"
         }

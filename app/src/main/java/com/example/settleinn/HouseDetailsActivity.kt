@@ -69,7 +69,7 @@ class HouseDetailsActivity : AppCompatActivity(),  OnMapReadyCallback  {
         bedroomBathTextView.text = house.bedrooms.toString() + "bd | " + house.bathrooms.toString() + "ba"
         if (house.listingStatus == "FOR_SALE") {
             statusTextView.text = "For Sale"
-        } else if (house.listingStatus == "ForRent") {
+        } else if (house.listingStatus == "FOR_RENT") {
             statusTextView.text = "For Rent"
         }else {
             statusTextView.text = "Not For Sale"

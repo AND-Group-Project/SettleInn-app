@@ -111,7 +111,7 @@ Pending user stories
 - [ ] Notifications when new listings are available
 - [ ] user can change their screen settings
 
-![](https://github.com/AND-Group-Project/SettleInn-app/blob/main/Kapture%202024-04-26%20at%2012.00.56.mp4)
+![](https://github.com/AND-Group-Project/SettleInn-app/blob/main/Kapture%202024-04-26%20at%2013.10.17.gif)
 
 App Demo Video
 ![](https://www.youtube.com/watch?v=tTWmbZjUmf4&ab_channel=SrimanUjhanthachhen)

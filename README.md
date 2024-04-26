@@ -113,7 +113,7 @@ Pending user stories
 ![](https://github.com/AND-Group-Project/SettleInn-app/blob/main/Kapture%202024-04-26%20at%2013.10.17.gif)
 
 App Demo Video
-[![IMAGE ALT TEXT HERE](https://www.youtube.com/watch?v=tTWmbZjUmf4&ab_channel=SrimanUjhanthachhen)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+[![IMAGE ALT TEXT HERE](https://www.youtube.com/watch?v=tTWmbZjUmf4&ab_channel=SrimanUjhanthachhen)](https://www.youtube.com/watch?v=tTWmbZjUmf4&ab_channel=SrimanUjhanthachhen)
 
 
 
